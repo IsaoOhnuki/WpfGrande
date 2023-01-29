@@ -1,4 +1,5 @@
 ﻿using MVVM;
+using Service;
 using SharedLib.Implements;
 using SharedLib.Interfaces;
 using System;
@@ -30,6 +31,7 @@ namespace WpfGrande
             ServiceManager.GetInstance().Initialize(new object[] { 0 });
 
             IViewService service = ServiceManager.GetInstance().Services.GetService<IViewService>();
+            IAService aservice = ServiceManager.GetInstance().Services.GetService<IAService>();
         }
     }
 }

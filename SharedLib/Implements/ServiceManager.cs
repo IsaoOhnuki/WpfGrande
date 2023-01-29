@@ -41,12 +41,6 @@ namespace SharedLib.Implements
 
         public void Initialize(object[] neededParameters, IDictionary<Type, Type> typeResolver = null)
         {
-            if (_initialize)
-            {
-                return;
-            }
-
-            _initialize = true;
             Services.ToList().ForEach(service =>
             {
                 string neededName = typeof(INeededParameter<object>).Name;
@@ -88,19 +82,14 @@ namespace SharedLib.Implements
                 service.Value.Startup(Services);
             });
         }
-        private bool _initialize;
 
         public void Dispose()
         {
-            if (_initialize)
-            {
-                _initialize = false;
-                Services.ToList().
-                    ForEach(service => service.Value.Finish(Services));
-                Services.Select(service => service.Value).OfType<IDisposable>().ToList().
-                    ForEach(service => service.Dispose());
-                Services.Clear();
-            }
+            Services.ToList().
+                ForEach(service => service.Value.Finish(Services));
+            Services.Select(service => service.Value).OfType<IDisposable>().ToList().
+                ForEach(service => service.Dispose());
+            Services.Clear();
         }
     }
 }
