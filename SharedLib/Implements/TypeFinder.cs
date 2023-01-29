@@ -21,7 +21,7 @@ namespace SharedLib.Implements
                             return module.GetTypes().
                                 Where(type => type.GetInterface(baseType.Name) != null || type.IsSubclassOf(baseType) || (direct && type == baseType));
                         });
-                }).ToArray();
+                }).Distinct().ToArray();
         }
     }
 }

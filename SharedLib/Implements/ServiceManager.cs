@@ -15,13 +15,12 @@ namespace SharedLib.Implements
         private static ServiceManager _serviceManager;
         public static ServiceManager GetInstance()
         {
-            _serviceManager = _serviceManager ?? (_serviceManager = new ServiceManager());
-            _serviceManager.Register();
-            return _serviceManager;
+            return _serviceManager ?? (_serviceManager = new ServiceManager());
         }
 
         private ServiceManager()
         {
+            Register();
         }
 
         public ServiceCollection Services { get; } = new ServiceCollection();
@@ -38,24 +37,6 @@ namespace SharedLib.Implements
                     serviceRegister.RegisterService(Services);
                 }
             });
-            //AppDomain.CurrentDomain.GetAssemblies().ToList().
-            //    ForEach(assembly =>
-            //    {
-            //        assembly.GetLoadedModules().ToList().
-            //            ForEach(module =>
-            //            {
-            //                module.GetTypes().ToList().
-            //                    ForEach(type =>
-            //                    {
-            //                        if (type.GetInterface(nameof(IServiceRegister)) is Type)
-            //                        {
-            //                            IServiceRegister serviceRegister = (IServiceRegister)
-            //                                Activator.CreateInstance(type);
-            //                            serviceRegister.RegisterService(Services);
-            //                        }
-            //                    });
-            //            });
-            //    });
         }
 
         public void Initialize(object[] neededParameters, IDictionary<Type, Type> typeResolver = null)

@@ -11,10 +11,7 @@ namespace MVVM
     {
         public void RegisterService(IServiceCollection serviceCollection)
         {
-            if (serviceCollection.All(x => x.Key != typeof(IViewService)))
-            {
-                serviceCollection.Add(typeof(IViewService), new ViewService());
-            }
+            serviceCollection.Add(typeof(IViewService), new ViewService());
         }
     }
 
