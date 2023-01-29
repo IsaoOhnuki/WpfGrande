@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MVVM;
+using SharedLib.Implements;
+using SharedLib.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,10 @@ namespace WpfGrande
         public MainWindow()
         {
             InitializeComponent();
+
+            ServiceManager.GetInstance().Initialize(new object[] { 0 });
+
+            IViewService service = ServiceManager.GetInstance().Services.GetService<IViewService>();
         }
     }
 }

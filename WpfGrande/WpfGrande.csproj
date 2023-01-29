@@ -94,5 +94,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVVM\MVVM.csproj">
+      <Project>{76b0f7d5-26c0-4924-b5fb-56ab8b2f59cf}</Project>
+      <Name>MVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReserveDiagram\ReserveDiagram.csproj">
+      <Project>{dfa766b0-1f04-4550-a22c-abd8e4c21eac}</Project>
+      <Name>ReserveDiagram</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{8b2bb08b-d158-4c0c-9676-be5a9fa94503}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharedLib\SharedLib.csproj">
+      <Project>{d10c6709-3665-4210-8668-08d494895802}</Project>
+      <Name>SharedLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
