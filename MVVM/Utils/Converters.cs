@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace MVVM
+namespace MVVM.Utils
 {
     public abstract class ConverterBase<TSource, TTarget> : MarkupExtension, IValueConverter
     {
