@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -15,10 +16,10 @@ using System.Windows.Shapes;
 
 namespace ReserveDiagram
 {
-    public interface ColumnSpan
+    public interface IColumnSet
     {
         int Start { get; }
-        int End { get; }
+        int Span { get; }
     }
 
     public class DiagramRow : Control
@@ -28,6 +29,19 @@ namespace ReserveDiagram
             DefaultStyleKeyProperty.OverrideMetadata(typeof(DiagramRow),
                 new FrameworkPropertyMetadata(typeof(DiagramRow)));
         }
+
+        public int Column
+        {
+            get { return (int)GetValue(ColumnProperty); }
+            set { SetValue(ColumnProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnProperty =
+            DependencyProperty.Register(
+                nameof(Column),
+                typeof(int),
+                typeof(DiagramRow),
+                new PropertyMetadata(0));
 
         public int ColumnSpan
         {
@@ -82,6 +96,14 @@ namespace ReserveDiagram
                     panel.ColumnDefinitions.RemoveAt(value - 1);
                 }
             }
+        }
+
+        private void a(List<IColumnSet> elements)
+        {
+            elements.ForEach(x =>
+            {
+
+            });
         }
     }
 }
